@@ -11,6 +11,9 @@ module MysqlCookbook
       return true if node['platform_family'] == 'rhel' && node['platform_version'].to_i == 7
       false
     end
+    
+    def amazon?
+      return true if node['platform_family'] == 'rhel' && node['platform_version'][/[0-9]{4}\.[0-9]{2}/]
 
     def wheezy?
       return true if node['platform'] == 'debian' && node['platform_version'].to_i == 7
@@ -91,6 +94,7 @@ module MysqlCookbook
 
     def default_client_package_name
       return ['mysql', 'mysql-devel'] if major_version == '5.1' && el6?
+      return ['mysql', 'mysql-devel'] if amazon?
       return ['mysql-client-5.5', 'libmysqlclient-dev'] if major_version == '5.5' && node['platform_family'] == 'debian'
       return ['mysql-client-5.6', 'libmysqlclient-dev'] if major_version == '5.6' && node['platform_family'] == 'debian'
       return ['mysql-client-5.7', 'libmysqlclient-dev'] if major_version == '5.7' && node['platform_family'] == 'debian'
