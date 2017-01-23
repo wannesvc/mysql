@@ -14,6 +14,7 @@ module MysqlCookbook
     
     def amazon?
       return true if node['platform_family'] == 'rhel' && node['platform_version'][/[0-9]{4}\.[0-9]{2}/]
+    end
 
     def wheezy?
       return true if node['platform'] == 'debian' && node['platform_version'].to_i == 7
