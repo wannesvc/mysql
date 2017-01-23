@@ -13,7 +13,7 @@ module MysqlCookbook
     end
     
     def amazon?
-      return true if node['platform_family'] == 'rhel' && node['platform_version'][/[0-9]{4}\.[0-9]{2}/]
+      return true if node['platform_family'] == 'rhel' && node['platform_version'][/2016\.[0-9]{2}/]
     end
 
     def wheezy?
